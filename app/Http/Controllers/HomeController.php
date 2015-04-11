@@ -14,6 +14,8 @@ class HomeController extends Controller {
 	|
 	*/
 
+	protected $account;
+
 	/**
 	 * Create a new controller instance.
 	 *
@@ -21,7 +23,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		$this->account = new MyAccountRepository();
 	}
 
 	/**
@@ -31,11 +33,9 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$account = new MyAccountRepository();
 		$data = array();
-		$account->giveBonusCoin();
-		$data['user'] = $account->get();
-		return view('home', $data);
+		$data['is_logined'] = $this->account->is_logined();
+		return view('app', $data);
 	}
 
 }

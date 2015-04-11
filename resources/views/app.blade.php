@@ -10,6 +10,9 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<!-- Scripts -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,10 +56,19 @@
 		</div>
 	</nav>
 
-	@yield('content')
+	<div id="loginPage" @if(!Auth::guest()) style="display: none;" @endif>
+		@include('auth.login')
+	</div>
+	<div id="homePage" @if(Auth::guest()) style="display: none;" @endif>
+		@include('home')
+	</div>
+	<div id="registerPage" style="display: none;">
+		@include('auth.register')
+	</div>
+	<div id="passwordPage" style="display: none;">
+		@include('auth.password')
+	</div>
 
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	@include('jscript')
 </body>
 </html>

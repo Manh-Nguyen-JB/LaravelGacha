@@ -1,6 +1,3 @@
-@extends('app')
-
-@section('content')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -18,9 +15,7 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+					<form class="form-horizontal" role="form" method="POST" id="login-form">
 						<div class="form-group">
 							<label class="col-md-4 control-label">E-Mail Address</label>
 							<div class="col-md-6">
@@ -58,4 +53,3 @@
 		</div>
 	</div>
 </div>
-@endsection

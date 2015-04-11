@@ -15,9 +15,9 @@ class MyAccountRepository extends BaseRepository{
 		$this->model = Auth::user();
 	}
 
-	public function get()
+	public function is_logined()
 	{
-		return $this->model;
+		return (isset($this->model) ? TRUE : FALSE);;
 	}
 
 	public function giveBonusCoin()
