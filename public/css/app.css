@@ -6231,3 +6231,32 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+#gacha-content {
+  width: 80%;
+  padding: 5px;
+  display: inline-block;
+  float: right;
+}
+#gacha-list {
+  width: 20%;
+  display: inline-block;
+  float: left;
+}
+.btn-gacha, .btn-gacha:focus, .btn-gacha:hover{
+  margin: 2px;
+  width: 130%;
+  outline: none;
+  color: #ffffff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-gacha:active {
+  color: #ffffff;
+  outline: none;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.btn-gacha.disabled {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}

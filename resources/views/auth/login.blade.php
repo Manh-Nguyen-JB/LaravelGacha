@@ -1,25 +1,13 @@
-@extends('app')
-
-@section('content')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">Login</div>
 				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<div id="alert-login" class="alert alert-danger" style="display: none;"></div>
+
+					<form id="login-form" class="form-horizontal" role="form" method="POST">
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">E-Mail Address</label>
@@ -58,4 +46,43 @@
 		</div>
 	</div>
 </div>
-@endsection
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	function alretLogin(errors){
+		var htmlText = '<strong>Whoops!</strong> There were some problems with your input.<br><br>';
+		htmlText += '<ul>';
+		$.each(errors, function(index, value){
+		    htmlText += '<li>' + index + ': ' + value + '</li>';
+		});
+		htmlText += '</ul>';
+		$('#alert-login').html(htmlText);
+		$('#alert-login').show();
+	}
+
+	$("#login-form").submit(function(e) {
+		var url = "{{ url('/auth/login') }}";
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: $("#login-form").serialize(),
+			success: function(data)
+			{
+				if(typeof data.failed !== 'string'){
+					$('#main-content').html(data);
+					reloadNavi();
+				}else{
+					alretLogin({'email': data.failed});
+				}
+				
+			},
+	        error: function(jqXHR, textStatus, errorThrown) 
+	        {
+	            alretLogin($.parseJSON(jqXHR.responseText));    
+	        }
+		});
+		e.preventDefault();
+	});
+});
+</script>

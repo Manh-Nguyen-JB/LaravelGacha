@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
-use App\Repositories\MyAccountRepository;
+
+use Request;
+use Auth;
+use App\Businesses\GachaLogic, App\Businesses\ItemLogic;
 
 class HomeController extends Controller {
 
@@ -14,6 +17,8 @@ class HomeController extends Controller {
 	|
 	*/
 
+	protected $gachalogic, $itemlogic; 
+
 	/**
 	 * Create a new controller instance.
 	 *
@@ -22,6 +27,8 @@ class HomeController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
+		$this->gachalogic = new GachaLogic;
+		$this->itemlogic = new ItemLogic;
 	}
 
 	/**
@@ -30,12 +37,17 @@ class HomeController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-		$account = new MyAccountRepository();
+	{	
 		$data = array();
-		$account->giveBonusCoin();
-		$data['user'] = $account->get();
-		return view('home', $data);
+		$data['gacha_list'] = $this->gachalogic->getAllUserGacha();
+		$tpl = Request::ajax() ? 'home' : 'app';
+
+		return view($tpl, $data);
+	}
+
+	public function draw($id)
+	{
+		return $this->gachalogic->drawGacha($id);
 	}
 
 }

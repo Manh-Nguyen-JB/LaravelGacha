@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,9 +10,17 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function(){
+	$request = Request::create('/home', 'GET');
+	return Auth::guest() ? (String) view('app') : Route::dispatch($request)->getContent();
+});
 
 Route::get('home', 'HomeController@index');
+Route::get('gacha/draw/{id}', 'HomeController@draw');
+
+Route::get('navi-bar', function(){
+	return (String) view('navi');
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

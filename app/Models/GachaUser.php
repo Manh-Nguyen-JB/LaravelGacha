@@ -10,5 +10,5 @@ class GachaUser extends Model {
 	 * @var string
 	 */
 	protected $table = 'gacha_users';
-
+	protected $fillable = array('user_id', 'gacha_id');
 }

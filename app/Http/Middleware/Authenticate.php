@@ -2,6 +2,7 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\Businesses\UserLogic;
 
 class Authenticate {
 
@@ -44,6 +45,8 @@ class Authenticate {
 			}
 		}
 
+		$user = new UserLogic();
+		$user->giveBonusCoin();
 		return $next($request);
 	}
 

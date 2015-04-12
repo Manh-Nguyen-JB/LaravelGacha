@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -33,6 +35,33 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
+	}
+
+	public function postLogin(Request $request)
+	{
+		$this->validate($request, [
+			'email' => 'required|email', 'password' => 'required',
+		]);
+
+		$credentials = $request->only('email', 'password');
+
+		if ($this->auth->attempt($credentials, $request->has('remember')))
+		{
+			$request = Request::create('/home', 'GET');
+			return Route::dispatch($request)->getContent();
+		}
+
+		$result = array();
+		$result['failed'] = $this->getFailedLoginMessage();
+
+		return $result;
+	}
+
+	public function getLogout()
+	{
+		$this->auth->logout();
+
+		return (String) view('auth.login');
 	}
 
 }
