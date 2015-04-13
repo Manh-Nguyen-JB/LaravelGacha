@@ -8,30 +8,54 @@
 					<table id="gacha-list">
 						@foreach($gacha_list as $gacha)
 							<tr><td>
-								<button gacha-id="{{$gacha['info']['id']}}" type="button" class="btn btn-gacha @if(time()-$gacha['reset_time']<0) disabled @endif">
-									{{$gacha['info']['name']}}
+								<button gacha-id="{{$gacha['id']}}" type="button" class="btn btn-gacha @if($gacha['id'] == 1) active @endif">
+									{{$gacha['name']}}
 								</button>
 							</tr></td>
 						@endforeach
 					</table>
 					<div id="gacha-content">
+						@foreach($gacha_list as $gacha)
+							<div id="gacha_info_{{$gacha['id']}}" class="gacha-info" @if($gacha['id'] == 1) style="display: block" @endif>
+								<center>
+									<h2>{{$gacha['name']}}</h2>
+									<button gacha-id="{{$gacha['id']}}" type="button" class="btn btn-draw btn-gacha-validate">Draw</button>
+									<table class='probability'>
+										<tr><th>Common</th><th>Uncommon</th><th>Rare</th><th>Super Rare</th></tr>
+										<tr>
+											<td>{{$gacha['rate_common']}}%</td>
+											<td>{{$gacha['rate_uncommon']}}%</td>
+											<td>{{$gacha['rate_rare']}}%</td>
+											<td>{{$gacha['rate_superrare']}}%</td>
+										</tr>
+									</table>
+								</center>
+							</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<div id='dialog-box'></div>
 <script type="text/javascript">
 $(document).ready(function()
 {
-	$(".btn-gacha").click(function(e) {
-		var url = "{{ url('/gacha/draw') }}" + '/' + $(this).attr('gacha-id');
+	$('.btn-gacha').click(function(e) {
+		$('[id^=gacha_info_]').hide();
+		var current_gacha = '#gacha_info_' + $(this).attr('gacha-id');
+		$(current_gacha).show();
+	});
+	$(".btn-gacha-validate").click(function(e) {
+		var url = "{{ url('/gacha/validate') }}" + '/' + $(this).attr('gacha-id');
 		$.ajax({
 			type: "GET",
 			url: url,
 			success: function(data)
 			{
-				console.log(data);	
+				$('#dialog-box').html(data);
+				$('#dialog-box').show();
 			},
 	        error: function(jqXHR, textStatus, errorThrown) 
 	        {

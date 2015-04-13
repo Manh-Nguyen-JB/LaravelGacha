@@ -4,7 +4,7 @@ use Request;
 use Auth;
 use App\Businesses\GachaLogic, App\Businesses\ItemLogic;
 
-class HomeController extends Controller {
+class GachaController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ class HomeController extends Controller {
 	public function index()
 	{	
 		$data = array();
-		$data['gacha_list'] = $this->gachalogic->getAllUserGacha();
+		$data['gacha_list'] = $this->gachalogic->getAllGacha();
 		$tpl = Request::ajax() ? 'home' : 'app';
 
 		return view($tpl, $data);
@@ -48,6 +48,13 @@ class HomeController extends Controller {
 	public function draw($id)
 	{
 		return $this->gachalogic->drawGacha($id);
+	}
+
+	public function validateGacha($id)
+	{
+		$data = array();
+		$data['gacha'] = $this->gachalogic->getUserGacha($id);
+		return view('draw', $data);
 	}
 
 }

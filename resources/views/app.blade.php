@@ -27,6 +27,8 @@
 		@include('navi')
 	</div>
 
+	@yield('content')
+
 	<div id='main-content'>
 		@if (Auth::guest())
 			@include('auth.login')

@@ -6240,9 +6240,10 @@ label,
 #gacha-list {
   width: 20%;
   display: inline-block;
+  vertical-align: middle;
   float: left;
 }
-.btn-gacha, .btn-gacha:focus, .btn-gacha:hover{
+.btn-gacha {
   margin: 2px;
   width: 130%;
   outline: none;
@@ -6250,7 +6251,7 @@ label,
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
-.btn-gacha:active {
+.btn-gacha .active, .btn-gacha:active, .btn-gacha:focus, .btn-gacha:hover {
   color: #ffffff;
   outline: none;
   background-color: #449d44;
@@ -6259,4 +6260,54 @@ label,
 .btn-gacha.disabled {
   background-color: #5cb85c;
   border-color: #4cae4c;
+}
+
+.btn-draw, .btn-draw:focus, .btn-draw:hover {
+  margin: 2px;
+  width: 30%;
+  outline: none;
+  color: #ffffff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.btn-draw:active {
+  outline: none;
+  color: #ffffff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+.btn-draw.disabled {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.gacha-info {
+  display: none;
+}
+
+.probability {
+  margin-top: 10px;
+}
+
+.probability td, .probability th {
+  padding: 2px;
+  border: 1px solid black;
+  width: 100px;
+}
+
+#dialog-box {
+  width: 500px;
+  height: 320px;
+  
+  margin: auto;
+  display: none;
+  padding: 5px;
+  color: #333333;
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid #dddddd;
+  background-color: #f5f5f5;
+
+  top:-70px; bottom: 0; left: 0; right: 0;
+
 }

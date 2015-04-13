@@ -15,8 +15,9 @@ Route::get('/', function(){
 	return Auth::guest() ? (String) view('app') : Route::dispatch($request)->getContent();
 });
 
-Route::get('home', 'HomeController@index');
-Route::get('gacha/draw/{id}', 'HomeController@draw');
+Route::get('home', 'GachaController@index');
+Route::post('gacha/draw/{id}', 'GachaController@draw');
+Route::get('gacha/validate/{id}', 'GachaController@validateGacha');
 
 Route::get('navi-bar', function(){
 	return (String) view('navi');

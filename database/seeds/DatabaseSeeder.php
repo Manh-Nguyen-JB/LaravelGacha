@@ -60,7 +60,7 @@ class ItemTableSeeder extends Seeder {
 
 		foreach ($card_races as $race) {
 			foreach ($card_jobs as $job) {
-				$card_names[] = $race . ' The' . $job;
+				$card_names[] = $race . ' The ' . $job;
 			}
 		}
 

@@ -14,9 +14,9 @@ class CreateItemUsersTable extends Migration {
 	{
 		Schema::create('item_users', function(Blueprint $table)
 		{
+			$table->increments('id');
 			$table->integer('item_id')->unsigned();
 			$table->integer('user_id')->unsigned();
-			$table->primary(array('item_id', 'user_id'));
 			$table->timestamps();
 		});
 	}

@@ -15,7 +15,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				@if (Auth::guest())
 					<li><a href="#">Login</a></li>
-					<li><a href="#">Register</a></li>
+					<li><a href="{{ url('/auth/register') }}">Register</a></li>
 				@else
 					<li><a href="#">Gacha</a></li>
 					<li><a href="#">Inventory</a></li>
