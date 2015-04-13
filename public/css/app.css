@@ -6231,73 +6231,86 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+
 #gacha-content {
   width: 80%;
   padding: 5px;
   display: inline-block;
   float: right;
 }
+/*
 #gacha-list {
   width: 20%;
   display: inline-block;
   vertical-align: middle;
   float: left;
-}
-.btn-gacha {
-  margin: 2px;
-  width: 130%;
-  outline: none;
-  color: #ffffff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
-}
-.btn-gacha .active, .btn-gacha:active, .btn-gacha:focus, .btn-gacha:hover {
-  color: #ffffff;
-  outline: none;
-  background-color: #449d44;
-  border-color: #398439;
-}
-.btn-gacha.disabled {
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+}*/
+
+#gacha-1 {
+    background: url('/images/gacha1.png');
+    width: 270px;
+    height: 128px;
+    position:relative;
 }
 
-.btn-draw, .btn-draw:focus, .btn-draw:hover {
-  margin: 2px;
-  width: 30%;
-  outline: none;
-  color: #ffffff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
-}
-.btn-draw:active {
-  outline: none;
-  color: #ffffff;
-  background-color: #ec971f;
-  border-color: #d58512;
-}
-.btn-draw.disabled {
-  background-color: #f0ad4e;
-  border-color: #eea236;
+#gacha-1:hover > .overlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background: url('/images/gacha1.png');
+    opacity:0.5;
+    border-radius:30px;
 }
 
-.gacha-info {
-  display: none;
+#gacha-2 {
+    background: url('/images/gacha2.png');
+    width: 270px;
+    height: 128px;
+    position:relative;
 }
+
+#gacha-2:hover > .overlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background: url('/images/gacha2.png');
+    opacity:0.5;
+    border-radius:30px;
+}
+
+#gacha-3 {
+    background: url('/images/gacha3.png');
+    width: 270px;
+    height: 128px;
+    position:relative;
+}
+
+#gacha-3:hover > .overlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background: url('/images/gacha3.png');
+    opacity:0.5;
+    border-radius:30px;
+}
+
+ul { list-style-type: none; margin: 0; padding: 0; }
+
+li { display: inline-block; text-align: center;}
 
 .probability {
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .probability td, .probability th {
-  padding: 2px;
+  padding: 5px;
   border: 1px solid black;
   width: 100px;
 }
 
 #dialog-box {
   width: 500px;
-  height: 320px;
+  height: 370px;
   
   margin: auto;
   display: none;
